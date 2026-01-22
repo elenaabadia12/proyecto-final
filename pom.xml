@@ -7,7 +7,7 @@
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
-    <fully.qualified.main.class>practica3.Main</fully.qualified.main.class>
+    <fully.qualified.main.class>proyecto.Main</fully.qualified.main.class>
   </properties>
 
   <dependencies>
@@ -59,4 +59,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>
