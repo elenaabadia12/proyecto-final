@@ -10,10 +10,10 @@ public class BookService {
     private static PublisherREST publisherRest = new PublisherREST();
 
     public static Object getAll(Request req, Response res) {
-        res.type("application/json"); // Corrección
+        res.type("application/json"); 
         res.status(200);
         
-        // Filtros opcionales por query params (ej: /books?theme=Terror)
+        // Filtros query params
         String theme = req.queryParams("theme");
         if(theme != null && !theme.isEmpty()) {
             return bookRest.findByTheme(theme);
@@ -23,7 +23,7 @@ public class BookService {
     }
 
     public static Object getById(Request req, Response res) {
-        res.type("application/json"); // Corrección
+        res.type("application/json"); 
         Book b = bookRest.getById(req.params("id"));
         if (b != null) {
             res.status(200);
@@ -35,7 +35,7 @@ public class BookService {
     }
 
     public static Object create(Request req, Response res) {
-        res.type("application/json"); // Corrección
+        res.type("application/json"); 
         
         String title = req.queryParams("title");
         String theme = req.queryParams("theme");
@@ -69,7 +69,7 @@ public class BookService {
     }
 
     public static Object update(Request req, Response res) {
-        res.type("application/json"); // Corrección
+        res.type("application/json"); 
         String id = req.params("id");
         
         Book currentBook = bookRest.getById(id);
@@ -81,15 +81,14 @@ public class BookService {
         String title = req.queryParams("title");
         String theme = req.queryParams("theme");
         
-        // CORRECCIÓN PUT: Validar si el título ya existe en OTRO libro
+       
         Book possibleDuplicate = bookRest.findByTitle(title);
         if (possibleDuplicate != null && !possibleDuplicate.getId().equals(id)) {
-             res.status(409); // Conflict
+             res.status(409); 
              return new ErrorMessage("Title already exists in another book");
         }
 
-        // Mantenemos los IDs anteriores si no se pasan nuevos, o lógica para actualizarlos
-        // Para simplificar, asumimos que solo se edita titulo y tema, o se recuperan los objetos
+        
         String authorId = currentBook.getAuthorId(); 
         String publisherId = currentBook.getPublisherId();
 

@@ -17,7 +17,7 @@ public class Author {
     public String getName() { return name; }
     public String getNationality() { return nationality; }
 
-    // Setters (Corrección aplicada)
+    // Setters
     public void setId(String id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setNationality(String nationality) { this.nationality = nationality; }

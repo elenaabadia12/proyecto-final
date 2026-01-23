@@ -17,7 +17,7 @@ public class Publisher {
     public String getName() { return name; }
     public String getWebsite() { return website; }
 
-    // Setters (Corrección aplicada)
+    // Setters
     public void setId(String id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setWebsite(String website) { this.website = website; }

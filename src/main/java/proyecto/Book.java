@@ -23,7 +23,7 @@ public class Book {
     public String getAuthorId() { return authorId; }
     public String getPublisherId() { return publisherId; }
 
-    // Setters (Corrección aplicada)
+    // Setters 
     public void setId(String id) { this.id = id; }
     public void setTitle(String title) { this.title = title; }
     public void setTheme(String theme) { this.theme = theme; }

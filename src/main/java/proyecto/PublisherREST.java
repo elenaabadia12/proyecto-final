@@ -6,7 +6,7 @@ import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
 
 public class PublisherREST {
-    // CAMBIA ESTO POR TU URL DE RESTDB PARA EDITORIALES
+
 	private static final String URL = "https://libreria-7fe4.restdb.io/rest/publishers";
     private static final String APIKEY = "66ccab08d021d717cf55132daf54b05da9536";
 

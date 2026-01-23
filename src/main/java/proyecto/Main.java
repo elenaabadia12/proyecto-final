@@ -4,10 +4,8 @@ import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Puerto predeterminado 8080 (necesario para Railway)
         port(8080); 
 
-        // Configuración CORS (Para que se pueda llamar desde cualquier sitio)
         options("/*", (req, res) -> {
             String headers = req.headers("Access-Control-Request-Headers");
             if (headers != null)
@@ -19,7 +17,7 @@ public class Main {
         });
         before((req, res) -> res.header("Access-Control-Allow-Origin", "*"));
 
-        // Transformador a JSON
+        // Transformar a JSON
         JsonTransformer json = new JsonTransformer();
 
 
@@ -28,8 +26,6 @@ public class Main {
         get("/authors/:id", AuthorService::getById, json);
         post("/authors", AuthorService::create, json);
         put("/authors/:id", AuthorService::update, json);
-        
-        // CORRECCIÓN AQUÍ:
         delete("/authors/:id", AuthorService::deleteAuthor, json); 
 
         // RUTAS EDITORIALES
@@ -37,8 +33,6 @@ public class Main {
         get("/publishers/:id", PublisherService::getById, json);
         post("/publishers", PublisherService::create, json);
         put("/publishers/:id", PublisherService::update, json);
-        
-        // CORRECCIÓN AQUÍ:
         delete("/publishers/:id", PublisherService::deletePublisher, json);
 
         // RUTAS LIBROS
@@ -46,8 +40,6 @@ public class Main {
         get("/books/:id", BookService::getById, json);
         post("/books", BookService::create, json);
         put("/books/:id", BookService::update, json);
-        
-        // CORRECCIÓN AQUÍ:
         delete("/books/:id", BookService::deleteBook, json);
     }
 }

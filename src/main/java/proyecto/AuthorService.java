@@ -36,7 +36,7 @@ public class AuthorService {
         }
 
         if (authorRest.findByName(name) != null) {
-            res.status(409); // Conflict
+            res.status(409); 
             return new ErrorMessage("Author already exists");
         }
 
@@ -57,7 +57,7 @@ public class AuthorService {
             return new ErrorMessage("Author not found");
         }
 
-        // Si cambia el nombre, comprobar que no exista ya otro autor con ese nombre
+        // Si cambia el nombre, comprobar que no exista ya ese nombre
         if (name != null && !name.equals(existing.getName())) {
             Author duplicate = authorRest.findByName(name);
             if (duplicate != null) {

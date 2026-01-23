@@ -4,10 +4,10 @@ import java.util.List;
 import kong.unirest.GenericType;
 import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
-import kong.unirest.JsonNode;
+//import kong.unirest.JsonNode;
 
 public class AuthorREST {
-    // CAMBIA ESTO POR TU URL DE RESTDB PARA AUTORES
+
 	private static final String URL = "https://libreria-7fe4.restdb.io/rest/authors";
     private static final String APIKEY = "66ccab08d021d717cf55132daf54b05da9536";
 
@@ -55,7 +55,7 @@ public class AuthorREST {
                 .getBody();
     }
 
-    // Corrección: Delete devuelve status
+
     public boolean delete(String id) {
         HttpResponse<String> response = Unirest.delete(URL + "/{id}")
             .header("x-apikey", APIKEY)

@@ -6,7 +6,7 @@ import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
 
 public class BookREST {
-    // CAMBIA ESTO POR TU URL DE RESTDB PARA LIBROS
+
 	private static final String URL = "https://libreria-7fe4.restdb.io/rest/books";
     private static final String APIKEY = "66ccab08d021d717cf55132daf54b05da9536";
 
@@ -23,7 +23,7 @@ public class BookREST {
                 .asObject(Book.class).getBody();
     }
 
-    // Búsqueda por Autor (Relación)
+    // Búsqueda por AutorID
     public List<Book> findByAuthor(String authorId) {
         String query = String.format("{\"authorId\":\"%s\"}", authorId);
         return Unirest.get(URL)
@@ -32,7 +32,7 @@ public class BookREST {
                 .asObject(new GenericType<List<Book>>(){}).getBody();
     }
 
-    // Búsqueda por Editorial (Relación)
+    // Búsqueda por EditorialID
     public List<Book> findByPublisher(String publisherId) {
         String query = String.format("{\"publisherId\":\"%s\"}", publisherId);
         return Unirest.get(URL)
@@ -41,7 +41,7 @@ public class BookREST {
                 .asObject(new GenericType<List<Book>>(){}).getBody();
     }
 
-    // Búsqueda por Temática (Filtro)
+    // Búsqueda por Temática
     public List<Book> findByTheme(String theme) {
         String query = String.format("{\"theme\":\"%s\"}", theme);
         return Unirest.get(URL)
