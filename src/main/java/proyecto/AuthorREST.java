@@ -4,7 +4,7 @@ import java.util.List;
 import kong.unirest.GenericType;
 import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
-//import kong.unirest.JsonNode;
+
 
 public class AuthorREST {
 
@@ -34,6 +34,16 @@ public class AuthorREST {
                 .asObject(new GenericType<List<Author>>(){})
                 .getBody();
         return list.isEmpty() ? null : list.get(0);
+    }
+    
+    public List<Author> findByNationality(String nationality) {
+        String query = String.format("{\"nationality\":\"%s\"}", nationality);
+        
+        return Unirest.get(URL)
+                .header("x-apikey", APIKEY)
+                .queryString("q", query) 
+                .asObject(new GenericType<List<Author>>(){})
+                .getBody();
     }
 
     public Author create(Author a) {

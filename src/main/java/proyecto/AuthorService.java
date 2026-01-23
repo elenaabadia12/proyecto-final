@@ -10,6 +10,14 @@ public class AuthorService {
     public static Object getAll(Request req, Response res) {
         res.type("application/json");
         res.status(200);
+        String nationality = req.queryParams("nationality");
+        
+        if (nationality != null && !nationality.isEmpty()) {
+            // Usamos el método de query que acabamos de crear
+            return authorRest.findByNationality(nationality);
+        }
+       
+        // Si no, devolvemos todos
         return authorRest.getAll();
     }
 

@@ -13,12 +13,38 @@ public class BookService {
         res.type("application/json"); 
         res.status(200);
         
-        // Filtros query params
+        //FILTRO POR TEMÁTICA
         String theme = req.queryParams("theme");
         if(theme != null && !theme.isEmpty()) {
             return bookRest.findByTheme(theme);
         }
         
+        //FILTRO POR NOMBRE DE AUTOR
+        String authorName = req.queryParams("author");
+        if (authorName != null && !authorName.isEmpty()) {
+            // Buscamos al autor por nombre para sacar su ID
+            Author a = authorRest.findByName(authorName);
+            if (a != null) {
+                return bookRest.findByAuthor(a.getId());
+            } else {
+                // Si no existe, devolvemos lista vacía
+                return new java.util.ArrayList<>();
+            }
+        }
+        
+        // FILTRO POR NOMBRE DE EDITORIAL
+        String publisherName = req.queryParams("publisher");
+        if (publisherName != null && !publisherName.isEmpty()) {
+        	// Buscamos editorial por nombre para sacar su ID
+            Publisher p = publisherRest.findByName(publisherName);
+            if (p != null) {
+                return bookRest.findByPublisher(p.getId());
+            } else {
+                return new java.util.ArrayList<>();
+            }
+        }
+        
+        // Si no hay filtros devolver todo
         return bookRest.getAll();
     }
 
